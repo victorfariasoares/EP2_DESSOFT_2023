@@ -30,7 +30,7 @@ def preenche_frota(frota,nome_navio,linha,coluna,orientacao,tamanho):
     
     frota[nome_navio].append(define_posicoes(linha, coluna, orientacao, tamanho))  
 
-    return frota  
+    return frota #volta um dicionario com o nome do navio sendo a chave e suas posições em listas
     
 # Ep2 - Faz jogada(Ex3)
 
@@ -40,4 +40,14 @@ def faz_jogada(tabuleiro,linha,coluna):
     elif tabuleiro[linha][coluna] == 1:
         tabuleiro[linha][coluna] = 'X'
 
+    return tabuleiro
+
+# EP2 - Posiciona Frota (ex4)
+def posiciona_frota(frota): #Aqui vai entrar como argumento o que retornamos no ex2 (preenche frota)
+    tabuleiro = [[0 for coluna in range(10)] for linha in range(10)]
+    for nome_navio in frota:
+        for lista_de_coordenadas in frota[nome_navio]:
+            for coordenada in lista_de_coordenadas:
+                x, y = coordenada
+                tabuleiro[x][y] = 1
     return tabuleiro
