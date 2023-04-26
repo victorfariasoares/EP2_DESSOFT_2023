@@ -1,4 +1,4 @@
-# EP2 - Define Posições
+# EP2 - Define Posições(Ex1)
 def define_posicoes(linha, coluna, orientacao, tamanho):
     posicoes = []
     soma_linha = 1
@@ -19,3 +19,16 @@ def define_posicoes(linha, coluna, orientacao, tamanho):
             soma_coluna += 1
     return posicoes
 
+
+
+#Ep2 - Preenche Frota(Ex2)
+
+
+def preenche_frota(frota,nome_navio,linha,coluna,orientacao,tamanho):
+    if nome_navio not in frota:
+        frota[nome_navio] = []
+    
+    frota[nome_navio].append(define_posicoes(linha, coluna, orientacao, tamanho))  
+
+    return frota  
+    
