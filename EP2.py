@@ -51,3 +51,48 @@ def posiciona_frota(frota): #Aqui vai entrar como argumento o que retornamos no 
                 x, y = coordenada
                 tabuleiro[x][y] = 1
     return tabuleiro
+
+#EP2 - Quantas embarcações afundadas (Ex5)
+def afundados(frota, tabuleiro):
+    navios_afundados = 0
+    for nome_navio in frota:
+        navio_afundado = False
+        for lista_de_coordenadas in frota[nome_navio]:
+            if all(tabuleiro[x][y] == 'X' for x, y in lista_de_coordenadas):
+                navio_afundado = True
+                break
+        if navio_afundado:
+            navios_afundados += 1
+    return navios_afundados
+
+print(afundados({
+    "porta-aviões":[
+      [[1,5],[1,6],[1,7],[1,8]]
+    ],
+    "navio-tanque":[
+      [[6,1],[6,2],[6,3]],
+      [[4,7],[5,7],[6,7]]
+    ],
+    "contratorpedeiro":[
+      [[1,1],[2,1]],
+      [[2,3],[3,3]],
+      [[9,1],[9,2]]
+    ],
+    "submarino": [
+      [[0,3]],
+      [[4,5]],
+      [[8,9]],
+      [[8,4]]
+    ],
+}, [
+  [0, '-', '-', 1, 0, 0, 0, 0, 0, 0],
+  [0, 1, 0, 0, 0, 'X', 'X', 'X', 'X', 0],
+  [0, 1, 0, 1, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 1, '-', '-', '-', '-', 0, 0],
+  [0, '-', 0, 0, 0, 1, 0, 1, 0, 0],
+  [0, 0, 0, 0, '-', 0, 0, 1, 0, 0],
+  [0, 1, 1, 1, 0, 0, 0, 1, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 'X', 0, 0, 0, 0, 1],
+  [0, 1, 1, '-', '-', '-', '-', '-', '-', '-']
+]))
