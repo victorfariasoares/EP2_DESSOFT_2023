@@ -83,3 +83,20 @@ print(afundados({
     [0, 0, 1, 0, 0, '-', 1, '-', 0, 0],
     [0, '-', 'X', 0, 1, 0, 'X', '-', '-', '-'],
     [0, 0, '-', '-', 0, 0, '-', '-', 'X', 0]]))
+
+#EP2 - Posição Válida (Ex6)
+
+def posicao_valida(frota, linha, coluna, orientacao, tamanho):
+    lista_vazia = []
+    posicoes = define_posicoes(linha, coluna, orientacao, tamanho)
+    for nome_navio in frota:
+        for lista_de_coordenadas in frota[nome_navio]:
+            for coordenada in lista_de_coordenadas:
+                lista_vazia.append(coordenada)
+    for posicao in posicoes:
+        if posicao[0] not in range(10) or posicao[1] not in range(10):
+            return False
+        if posicao in lista_vazia:
+            return False
+    
+    return True
