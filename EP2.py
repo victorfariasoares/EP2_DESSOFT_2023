@@ -55,14 +55,17 @@ def posiciona_frota(frota): #Aqui vai entrar como argumento o que retornamos no 
 #EP2 - Quantas embarcações afundadas (Ex5)
 def afundados(frota, tabuleiro):
     navios_afundados = 0
-    for nome_navio in frota:
-        navio_afundado = False
-        for lista_de_coordenadas in frota[nome_navio]:
-            if all(tabuleiro[x][y] == 'X' for x, y in lista_de_coordenadas):
-                navio_afundado = True
-                break
-        if navio_afundado:
-            navios_afundados += 1
+    navio_afundado = False
+    for nome_navio in frota.values():
+        for lista_de_coordenadas in nome_navio:
+            for coordenada in lista_de_coordenadas:
+                if tabuleiro[coordenada[0]][coordenada[1]] == 'X':
+                    navio_afundado = True
+                else:
+                    navio_afundado = False
+                    break
+            if navio_afundado == True:
+                navios_afundados += 1
     return navios_afundados
 
 print(afundados({
