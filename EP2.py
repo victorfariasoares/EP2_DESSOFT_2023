@@ -106,29 +106,37 @@ dicio_de_infos = {'porta-aviões': {'quantidade': 1, 'tamanho': 4},
  'navio-tanque': {'quantidade': 2, 'tamanho': 3}, 
  'contratorpedeiro': {'quantidade': 3, 'tamanho': 2},
 'submarino': {'quantidade': 4, 'tamanho': 1}}
-frota = {
-    "porta-aviões":[],
-    "navio-tanque":[],
-    "contratorpedeiro":[],
-    "submarino": [],
-}
-for nomes, tamanhos in dicio_de_infos.items():
-    while len(frota[nomes]) < dicio_de_infos[nomes]['quantidade']:
+
+frota = {}
+
+
+for nomes, info in dicio_de_infos.items():
+    lista = []
+    i = 0
+    while i < dicio_de_infos [nomes]['quantidade']:
+        tamanho = info['tamanho']
         if nomes != 'submarino':
-            print(f'Insira as informações referentes ao navio {nomes} que possui tamanho {tamanhos}')
-            linha = int(input('Digite a linha da embarcação: '))
+            print(f'Insira as informações referentes ao navio {nomes} que possui tamanho {tamanho}')
+            linha =int(input('Digite a linha da embarcação: '))
             coluna = int(input('Digite a coluna da embarcação: '))
             orientacao = int(input('Digite a orientação da embarcação. > [1] Vertical [2] Horizontal '))
             if orientacao == 1:
                 orientacao = 'vertical'
             elif orientacao == 2:
                 orientacao = 'horizontal'
-        else: 
-            print(f'Insira as informações referentes ao navio {nomes} que possui tamanho {tamanhos}')
+        if nomes == 'submarino': 
+            print(f'Insira as informações referentes ao navio {nomes} que possui tamanho {tamanho}')
             linha = int(input('Digite a linha da embarcação '))
             coluna = int(input('Digite a coluna da embarcação '))
-        if posicao_valida(frota, linha, coluna, orientacao, dicio_de_infos[nomes]['quantidade']) == False:
+        if posicao_valida(frota, linha, coluna, orientacao, tamanho) == True:
+            i+=1
+            lista.append(define_posicoes(linha, coluna, orientacao, tamanho))
+            frota[nomes] = lista
+            
+        elif posicao_valida(frota, linha, coluna, orientacao, tamanho) == False:
             print('Esta posição não está válida!')
+print(frota)
+
 
         #preenche_frota(frota,nome_navio,linha,coluna,orientacao,tamanho):
 
