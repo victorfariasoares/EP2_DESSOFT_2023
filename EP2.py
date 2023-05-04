@@ -141,3 +141,76 @@ print(frota)
         #preenche_frota(frota,nome_navio,linha,coluna,orientacao,tamanho):
 
 
+
+
+
+def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
+    texto = ''
+    texto += '   0  1  2  3  4  5  6  7  8  9         0  1  2  3  4  5  6  7  8  9\n'
+    texto += '_______________________________      _______________________________\n'
+
+    for linha in range(len(tabuleiro_jogador)):
+        jogador_info = '  '.join([str(item) for item in tabuleiro_jogador[linha]])
+        oponente_info = '  '.join([info if str(info) in 'X-' else '0' for info in tabuleiro_oponente[linha]])
+        texto += f'{linha}| {jogador_info}|     {linha}| {oponente_info}|\n'
+
+
+
+frota_oponente = {
+    'porta-aviões': [
+        [[9, 1], [9, 2], [9, 3], [9, 4]]
+    ],
+    'navio-tanque': [
+        [[6, 0], [6, 1], [6, 2]],
+        [[4, 3], [5, 3], [6, 3]]
+    ],
+    'contratorpedeiro': [
+        [[1, 6], [1, 7]],
+        [[0, 5], [1, 5]],
+        [[3, 6], [3, 7]]
+    ],
+    'submarino': [
+        [[2, 7]],
+        [[0, 6]],
+        [[9, 7]],
+        [[7, 6]]
+    ]
+}
+
+
+jogadas=[]
+jogando = True
+af = 0
+tabuleiro_oponente = posiciona_frota(frota_oponente)
+print(monta_tabuleiros(posiciona_frota(frota),tabuleiro_oponente))
+while jogando:
+    linha_atacar = int(input('Qual linha deseja atacar? '))
+
+    coluna_atacar = int(input('Qual coluna deseja atacar? '))
+    
+    if linha_atacar <0 or linha_atacar >9: 
+        print('Linha inválida!')
+    
+    if coluna_atacar <0 or coluna_atacar >9: 
+        print('Coluna inválida!')
+    
+    if [linha_atacar,coluna_atacar] in jogadas: 
+        print(f'A posição linha {linha_atacar} e coluna {coluna_atacar} já foi informada anteriormente!')
+        
+
+    else:
+        jogadas.append([linha_atacar,coluna_atacar])
+
+        tabuleiro_oponente = faz_jogada(tabuleiro_oponente,linha_atacar,coluna_atacar)
+
+        print(monta_tabuleiros(posiciona_frota(frota),faz_jogada(tabuleiro_oponente)))
+
+        if afundados(frota_oponente,tabuleiro_oponente) == af+1:
+            af = afundados(frota_oponente,tabuleiro_oponente)
+
+            if af >= 10: 
+                print('Parabéns! Você derrubou todos os navios do seu oponente!')
+                jogando = False 
+
+
+
