@@ -179,7 +179,7 @@ while jogando:
 
     while posi_invalida: 
         coluna_atacar = int(input('Qual coluna deseja atacar? '))
-         
+
         if coluna_atacar <0 or coluna_atacar >9: 
             print('Coluna inválida!')
         else: posi_invalida = False
