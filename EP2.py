@@ -169,17 +169,25 @@ while jogando:
     while posi_invalida:
         linha_atacar = int(input('Qual linha deseja atacar? '))
 
-    coluna_atacar = int(input('Qual coluna deseja atacar? '))
-    
-    if linha_atacar <0 or linha_atacar >9: 
-        print('Linha inválida!')
-    
-    if coluna_atacar <0 or coluna_atacar >9: 
-        print('Coluna inválida!')
+        if linha_atacar <0 or linha_atacar >9: 
+            print('Linha inválida!')
+        
+        else: 
+            posi_invalida = False
+
+    posi_invalida = True
+
+    while posi_invalida: 
+        coluna_atacar = int(input('Qual coluna deseja atacar? '))
+         
+        if coluna_atacar <0 or coluna_atacar >9: 
+            print('Coluna inválida!')
+        else: posi_invalida = False
     
     if [linha_atacar,coluna_atacar] in jogadas: 
         print(f'A posição linha {linha_atacar} e coluna {coluna_atacar} já foi informada anteriormente!')
         
+
     else:
         jogadas.append([linha_atacar,coluna_atacar])
 
@@ -191,5 +199,5 @@ while jogando:
             print('Parabéns! Você derrubou todos os navios do seu oponente!')
             jogando = False 
 
-
+    
 
