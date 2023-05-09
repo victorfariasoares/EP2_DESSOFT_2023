@@ -86,7 +86,7 @@ def posicao_valida(frota, linha, coluna, orientacao, tamanho):
     return True
 
 
-#EP2 - Posicionando Frota (Ex5)
+#EP2 - Posicionando Frota (Ex7)
 dicio_de_infos = {'porta-aviões': {'quantidade': 1, 'tamanho': 4},
  'navio-tanque': {'quantidade': 2, 'tamanho': 3}, 
  'contratorpedeiro': {'quantidade': 3, 'tamanho': 2},
@@ -122,11 +122,8 @@ for nomes, info in dicio_de_infos.items():
 print(frota)
 
 
-        #preenche_frota(frota,nome_navio,linha,coluna,orientacao,tamanho):
 
-
-
-
+#EP2 - Jogadas do Jogador (Ex8)
 
 def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
     texto = ''
@@ -172,23 +169,17 @@ while jogando:
     while posi_invalida:
         linha_atacar = int(input('Qual linha deseja atacar? '))
 
-        if linha_atacar <0 or linha_atacar >9: 
-            print('Linha inválida!')
-        
-        else: 
-            posi_invalida = False
-    posi_invalida = True
-
-    while posi_invalida: 
-        coluna_atacar = int(input('Qual coluna deseja atacar? ')) 
-        if coluna_atacar <0 or coluna_atacar >9: 
-            print('Coluna inválida!')
-        else: posi_invalida = False
+    coluna_atacar = int(input('Qual coluna deseja atacar? '))
+    
+    if linha_atacar <0 or linha_atacar >9: 
+        print('Linha inválida!')
+    
+    if coluna_atacar <0 or coluna_atacar >9: 
+        print('Coluna inválida!')
     
     if [linha_atacar,coluna_atacar] in jogadas: 
         print(f'A posição linha {linha_atacar} e coluna {coluna_atacar} já foi informada anteriormente!')
         
-
     else:
         jogadas.append([linha_atacar,coluna_atacar])
 
