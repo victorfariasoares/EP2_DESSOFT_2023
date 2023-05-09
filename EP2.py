@@ -164,19 +164,26 @@ frota_oponente = {
 
 jogadas=[]
 jogando = True
-af = 0
 tabuleiro_oponente = posiciona_frota(frota_oponente)
-print(monta_tabuleiros(posiciona_frota(frota),tabuleiro_oponente))
-while jogando:
-    linha_atacar = int(input('Qual linha deseja atacar? '))
 
-    coluna_atacar = int(input('Qual coluna deseja atacar? '))
-    
-    if linha_atacar <0 or linha_atacar >9: 
-        print('Linha inválida!')
-    
-    if coluna_atacar <0 or coluna_atacar >9: 
-        print('Coluna inválida!')
+while jogando:
+    print(monta_tabuleiros(posiciona_frota(frota),tabuleiro_oponente))
+    posi_invalida = True
+    while posi_invalida:
+        linha_atacar = int(input('Qual linha deseja atacar? '))
+
+        if linha_atacar <0 or linha_atacar >9: 
+            print('Linha inválida!')
+        
+        else: 
+            posi_invalida = False
+    posi_invalida = True
+
+    while posi_invalida: 
+        coluna_atacar = int(input('Qual coluna deseja atacar? ')) 
+        if coluna_atacar <0 or coluna_atacar >9: 
+            print('Coluna inválida!')
+        else: posi_invalida = False
     
     if [linha_atacar,coluna_atacar] in jogadas: 
         print(f'A posição linha {linha_atacar} e coluna {coluna_atacar} já foi informada anteriormente!')
@@ -187,14 +194,11 @@ while jogando:
 
         tabuleiro_oponente = faz_jogada(tabuleiro_oponente,linha_atacar,coluna_atacar)
 
-        print(monta_tabuleiros(posiciona_frota(frota),faz_jogada(tabuleiro_oponente)))
+        print(monta_tabuleiros(posiciona_frota(frota),faz_jogada(tabuleiro_oponente,linha_atacar,coluna_atacar)))
 
-        if afundados(frota_oponente,tabuleiro_oponente) == af+1:
-            af = afundados(frota_oponente,tabuleiro_oponente)
-
-            if af >= 10: 
-                print('Parabéns! Você derrubou todos os navios do seu oponente!')
-                jogando = False 
+        if afundados(frota_oponente,tabuleiro_oponente) == 10:
+            print('Parabéns! Você derrubou todos os navios do seu oponente!')
+            jogando = False 
 
 
 
