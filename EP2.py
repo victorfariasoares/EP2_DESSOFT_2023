@@ -119,7 +119,7 @@ for nomes, info in dicio_de_infos.items():
             
         elif posicao_valida(frota, linha, coluna, orientacao, tamanho) == False:
             print('Esta posição não está válida!')
-print(frota)
+#print(frota)
 
 
 
