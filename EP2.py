@@ -134,6 +134,7 @@ def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
         jogador_info = '  '.join([str(item) for item in tabuleiro_jogador[linha]])
         oponente_info = '  '.join([info if str(info) in 'X-' else '0' for info in tabuleiro_oponente[linha]])
         texto += f'{linha}| {jogador_info}|     {linha}| {oponente_info}|\n'
+    return texto
 
 
 
@@ -192,8 +193,6 @@ while jogando:
         jogadas.append([linha_atacar,coluna_atacar])
 
         tabuleiro_oponente = faz_jogada(tabuleiro_oponente,linha_atacar,coluna_atacar)
-
-        print(monta_tabuleiros(posiciona_frota(frota),faz_jogada(tabuleiro_oponente,linha_atacar,coluna_atacar)))
 
         if afundados(frota_oponente,tabuleiro_oponente) == 10:
             print('Parabéns! Você derrubou todos os navios do seu oponente!')
