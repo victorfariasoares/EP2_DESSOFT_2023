@@ -1,3 +1,7 @@
+import random 
+
+random.seed(2)
+
 # EP2 - Define Posições(Ex1)
 def define_posicoes(linha, coluna, orientacao, tamanho):
     posicoes = []
@@ -161,8 +165,10 @@ frota_oponente = {
 
 
 jogadas=[]
+lista_jogadas = []
 jogando = True
 tabuleiro_oponente = posiciona_frota(frota_oponente)
+tabuleiro = posiciona_frota(frota)
 
 while jogando:
     print(monta_tabuleiros(posiciona_frota(frota),tabuleiro_oponente))
@@ -196,7 +202,25 @@ while jogando:
 
         if afundados(frota_oponente,tabuleiro_oponente) == 10:
             print('Parabéns! Você derrubou todos os navios do seu oponente!')
-            jogando = False 
+            jogando = False
 
-    
+        if afundados(frota_oponente,tabuleiro_oponente) != 10:
+            posi_invalida = True
 
+            while posi_invalida: 
+                linha_atacar_oponente = random.randint(0,9)
+
+                coluna_atacar_oponente = random.randint(0,9)
+
+                if [linha_atacar_oponente,coluna_atacar_oponente] not in lista_jogadas:
+                    
+                    lista_jogadas.append([linha_atacar_oponente,coluna_atacar_oponente])
+
+                    print(f'Seu oponente está atacando na linha {linha_atacar_oponente} e coluna {coluna_atacar_oponente}')
+
+                    posi_invalida = False 
+
+            tabuleiro = faz_jogada(tabuleiro,linha_atacar_oponente,coluna_atacar_oponente)
+            if afundados(frota,tabuleiro) == 10:
+                print('Xi! O oponente derrubou toda a sua frota =(')
+                jogando = False
