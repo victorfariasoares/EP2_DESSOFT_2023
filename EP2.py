@@ -1,6 +1,6 @@
 import random 
 
-random.seed(2)
+#random.seed(2)
 
 # EP2 - Define Posições(Ex1)
 def define_posicoes(linha, coluna, orientacao, tamanho):
